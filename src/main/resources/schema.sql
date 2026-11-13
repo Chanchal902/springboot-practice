@@ -1,17 +1,30 @@
-CREATE TABLE IF NOT EXISTS Students
+-- CREATE TABLE IF NOT EXISTS Students
+-- (
+--     Id
+--     SERIAL
+--     PRIMARY
+--     KEY,
+--     Name
+--     VARCHAR
+-- (
+--     50
+-- ) NOT NULL,
+--     Email VARCHAR
+-- (
+--     50
+-- ) UNIQUE,
+--     Age INT
+--     );
+
+CREATE TABLE IF NOT EXISTS Student
 (
-    Id
-    SERIAL
+    Roll
+    INTEGER
     PRIMARY
     KEY,
     Name
     VARCHAR
 (
-    50
-) NOT NULL,
-    Email VARCHAR
-(
-    50
-) UNIQUE,
-    Age INT
+    100
+) NOT NULL
     );
