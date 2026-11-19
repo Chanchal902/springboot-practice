@@ -1,5 +1,6 @@
 package com.backend.springbootpractice.demo7;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,14 @@ public class ProductService {
     }
 
     public Product findProductById(int id) {
-        return productRepository.findById(id);
+        try {
+            return productRepository.findById(id);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public List<Product> findProductsByCategory(String category) {
+        return productRepository.findByCategory(category);
     }
 }
