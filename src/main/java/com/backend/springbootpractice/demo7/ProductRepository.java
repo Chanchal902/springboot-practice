@@ -17,7 +17,7 @@ public class ProductRepository {
     public List<Product> findAll() {
         String sql = "SELECT * FROM products";
         RowMapper<Product> rowMapper = ((rs, rowNum) -> {
-            return new Product(rs.getInt("id"), rs.getString("name"), rs.getDouble("price"), rs.getInt("quantity"));
+            return new Product(rs.getInt("id"), rs.getString("name"), rs.getDouble("price"), rs.getInt("quantity"), rs.getString("category"));
         });
         return jdbcTemplate.query(sql, rowMapper);
     }
@@ -25,8 +25,16 @@ public class ProductRepository {
     public Product findById(int id) {
         String sql = "SELECT * FROM products WHERE id = ?";
         RowMapper<Product> rowMapper = ((rs, rowNum) -> {
-            return new Product(rs.getInt("id"), rs.getString("name"), rs.getDouble("price"), rs.getInt("quantity"));
+            return new Product(rs.getInt("id"), rs.getString("name"), rs.getDouble("price"), rs.getInt("quantity"), rs.getString("category"));
         });
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
+
+    public List<Product> findByCategory(String category) {
+        String sql = "SELECT * FROM products WHERE category = ?";
+        RowMapper<Product> rowMapper = ((rs, rowNum) -> {
+            return new Product(rs.getInt("id"), rs.getString("name"), rs.getDouble("price"), rs.getInt("quantity"), rs.getString("category"));
+        });
+        return jdbcTemplate.query(sql, rowMapper, category);
     }
 }
